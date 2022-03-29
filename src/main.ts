@@ -23,6 +23,8 @@ import router from './router';
 const app = createApp(App)
   .use(IonicVue, {
     mode: 'ios',
+    backButtonText: '',
+    swipeBackEnabled: false
   })
   .use(router);
 

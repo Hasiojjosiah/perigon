@@ -7,8 +7,7 @@
   src: url("../public/assets/fonts/Sessions.ttf.woff") format("woff"),
     url("../public/assets/fonts/Sessions.ttf.svg#Sessions") format("svg"),
     url("../public/assets/fonts/Sessions.ttf.eot"),
-    url("../public/assets/fonts/Sessions.ttf.eot?#iefix")
-      format("embedded-opentype");
+    url("../public/assets/fonts/Sessions.ttf.eot?#iefix") format("embedded-opentype");
   font-weight: normal;
   font-style: normal;
 }
@@ -55,4 +54,14 @@
 
 .font-perigon {
   font-family: "Sessions";
+}
+
+ion-content {
+  --background: #f2f2f2;
+}
+
+ion-input {
+  --padding-bottom: 0px !important;
+  --padding-top: 0px !important;
+  margin-top: -14px;
 }

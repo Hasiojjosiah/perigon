@@ -22,6 +22,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/Login.vue')
   },
   {
+    path: '/create-account',
+    component: () => import('@/views/CreateAccount.vue')
+  },
+  {
     path: '/tabs/',
     component: TabsPage,
     children: [

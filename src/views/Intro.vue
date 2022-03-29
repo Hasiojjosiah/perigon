@@ -85,10 +85,6 @@ export default defineComponent({
     };
   },
 
-  methods: {
-    nextSlides() {
-      console.log("Test");
-    },
-  },
+  methods: {},
 });
 </script>

@@ -1,7 +1,15 @@
 <template>
-  <div class="bg-gray-400 h-full flex ">
+  <div class="bg-gray-400 h-full flex login-bg">
     <div class="m-auto p-4">
-      <div class="text-center font-perigon font-semibold text-5xl mb-16 tracking-wider">
+      <div
+        class="
+          text-center
+          font-perigon font-semibold
+          text-5xl
+          mb-16
+          tracking-wider
+        "
+      >
         PERIGON
       </div>
       <div class="text-left text-1xl font-semibold tracking-wider py-4 px-3">
@@ -34,7 +42,7 @@
         color="primary"
         class="
           bg-black
-          font-extrabold
+          font-bold
           text-white
           mx-auto
           rounded-md
@@ -75,9 +83,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
-ion-input {
-  --padding-bottom: 0px !important;
-  --padding-top: 0px !important;
-  margin-top: -14px;
+.login-bg {
+  background-image: url("../../public/assets/images/login-bg.gif");
+  background-size: cover;
+  background-position: center;
 }
 </style>

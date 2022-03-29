@@ -1,2 +1,4 @@
 - git clone https://github.com/Hasiojjosiah/perigon.git
+- cd perigosn
 - npm install
+- ionic serve
