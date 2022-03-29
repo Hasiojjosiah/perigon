@@ -36,7 +36,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 
 export default defineComponent({
-  name: "IntroPage",
+  name: "PassesPage",
   components: {
     Swiper,
     SwiperSlide,
