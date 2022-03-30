@@ -34,6 +34,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/Passes.vue')
   },
   {
+    path: '/u/purchase-summary',
+    component: () => import('@/views/PurchaseSummary.vue')
+  },
+  {
     path: '/u/',
     component: TabsPage,
     children: [
@@ -45,7 +49,7 @@ const routes: Array<RouteRecordRaw> = [
         path: 'home',
         component: () => import('@/views/Home.vue')
       },
-     
+
       {
         path: 'class',
         component: () => import('@/views/Class.vue')

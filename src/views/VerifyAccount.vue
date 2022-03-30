@@ -23,12 +23,12 @@
 
     <ion-content :fullscreen="true">
       <div class="p-4 grid gap-4">
-        <div class="text-md text-center">
+        <div class="text-md text-center pt-4">
           Thank you for registring with us! We <br />
           have sent a verification code to your <br />
           <b> email {{ email }}. </b>
         </div>
-        <div class="text-md text-center">
+        <div class="text-sm text-center">
           Kindly check your email to verify your <br />
           account.
         </div>
@@ -101,6 +101,7 @@ import {
   useIonRouter,
 } from "@ionic/vue";
 
+import { arrowBackOutline } from "ionicons/icons";
 import { defineComponent } from "vue";
 
 import "swiper/css";
@@ -122,13 +123,13 @@ export default defineComponent({
   data() {
     return {
       email: "samantha.nicole@gmail.com",
-      code: "000000",
+      code: "982882",
     };
   },
 
   setup() {
     const ionRouter = useIonRouter();
-    return { ionRouter };
+    return { ionRouter, arrowBackOutline };
   },
 
   methods: {

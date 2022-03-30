@@ -257,7 +257,9 @@ export default defineComponent({
         swiper.updateAutoHeight(500);
 
         if (activeIndex === 2) {
-          this.presentAlertConfirm();
+          setTimeout(() => {
+            this.presentAlertConfirm();
+          }, 500);
         }
       } else {
         this.wizardIndicator[previousIndex].active = false;
@@ -285,8 +287,6 @@ export default defineComponent({
 
 
 <style >
-
-
 /* Alert */
 
 .alert-head {

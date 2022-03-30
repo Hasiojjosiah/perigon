@@ -42,7 +42,7 @@
         mb-2
         h-14
       "
-      @click="swiper.slideNext()"
+      @click="ionRouter.navigate('verify-account')"
       >I ACCEPT
     </ion-button>
   </div>
@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useIonRouter } from "@ionic/vue";
 import { useSwiper } from "swiper/vue";
 
 export default defineComponent({
@@ -73,9 +74,10 @@ export default defineComponent({
   },
   setup() {
     const swiper = useSwiper();
-
+    const ionRouter = useIonRouter();
     return {
       swiper,
+      ionRouter,
     };
   },
   // mounted() {},

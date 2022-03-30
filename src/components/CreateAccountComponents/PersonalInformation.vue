@@ -90,7 +90,13 @@
         </ion-input>
       </div>
     </ion-item>
-
+    <div class="grid grid-flow-col gap-2">
+      <ion-checkbox></ion-checkbox>
+      <div class="text-xs">
+        I agree to recieve emails from news, announcement and promotional offers
+        from <b>PERIGON</b> via email
+      </div>
+    </div>
     <ion-button
       size="large"
       expand="block"
@@ -108,7 +114,10 @@
       @click="swiper.slideNext()"
       >NEXT</ion-button
     >
-    <div class="text-center text-xs font-light tracking-wider py-4 underline">
+    <div
+      @click="gotoLogin"
+      class="text-center text-xs font-light tracking-wider py-4 underline"
+    >
       Already signed up?
     </div>
   </form>
@@ -117,7 +126,14 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useSwiper } from "swiper/vue";
-import { IonInput, IonLabel, IonItem, IonButton } from "@ionic/vue";
+import {
+  IonInput,
+  IonLabel,
+  IonItem,
+  IonButton,
+  useIonRouter,
+  IonCheckbox,
+} from "@ionic/vue";
 
 export default defineComponent({
   name: "PersonalInformation",
@@ -126,6 +142,7 @@ export default defineComponent({
     IonLabel,
     IonItem,
     IonButton,
+    IonCheckbox,
   },
   props: {
     // position: Number,
@@ -150,12 +167,17 @@ export default defineComponent({
   },
   setup() {
     const swiper = useSwiper();
+    const ionRouter = useIonRouter();
 
     return {
+      ionRouter,
       swiper,
     };
   },
-  // mounted() {},
-  // methods: {},
+  methods: {
+    gotoLogin() {
+      this.ionRouter.navigate("/login");
+    },
+  },
 });
 </script>

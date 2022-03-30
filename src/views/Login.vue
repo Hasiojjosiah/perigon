@@ -55,7 +55,10 @@
           @click="login"
           >LOGIN</ion-button
         >
-        <div class="text-center text-xs font-light tracking-wider py-4">
+        <div
+          class="text-center text-xs font-light tracking-wider py-4"
+          @click="createAccount"
+        >
           Don't have an account?
           <span class="font-bold underline">Create account</span>
         </div>
@@ -96,6 +99,9 @@ export default defineComponent({
   methods: {
     login() {
       this.ionRouter.navigate("/u/home", "forward", "replace");
+    },
+    createAccount() {
+      this.ionRouter.navigate("/create-account", "forward");
     },
   },
 });
