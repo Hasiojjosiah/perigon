@@ -65,3 +65,22 @@ ion-input {
   --padding-top: 0px !important;
   margin-top: -14px;
 }
+
+
+
+
+/* Toolbar Header */
+ion-toolbar {
+  --background: black;
+  --color: white;
+  --padding-top: 20px;
+  --padding-bottom: 10px;
+}
+
+
+/* Tab Bar Menu */
+.tab-selected ion-label {
+  font-weight: 900 !important;
+}
+
+

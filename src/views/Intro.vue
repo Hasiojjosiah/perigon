@@ -1,33 +1,36 @@
 <template>
-  <swiper
-    ref="slideSwiper"
-    class="bg-white h-screen"
-    :options="swiperOptions"
-    :slides-per-view="1"
-    :modules="modules"
-    effect="fade"
-    :auto-destroy="true"
-    :delete-instance-on-destroy="true"
-    :cleanup-styles-on-destroy="true"
-  >
-    <swiper-slide
-      v-for="(intro, index) in introContent"
-      :key="index"
-      :virtualIndex="index"
-      class="bg-white"
+  <ion-page>
+    <swiper
+      ref="slideSwiper"
+      class="bg-white h-screen"
+      :options="swiperOptions"
+      :slides-per-view="1"
+      :modules="modules"
+      effect="fade"
+      :auto-destroy="true"
+      :delete-instance-on-destroy="true"
+      :cleanup-styles-on-destroy="true"
     >
-      <IntroSliderContainer
-        :position="index"
-        :icon="intro.icon"
-        :title="intro.title"
-        :descriptions="intro.description"
-      ></IntroSliderContainer>
-    </swiper-slide>
-  </swiper>
+      <swiper-slide
+        v-for="(intro, index) in introContent"
+        :key="index"
+        :virtualIndex="index"
+        class="bg-white"
+      >
+        <IntroSliderContainer
+          :position="index"
+          :icon="intro.icon"
+          :title="intro.title"
+          :descriptions="intro.description"
+        ></IntroSliderContainer>
+      </swiper-slide>
+    </swiper>
+  </ion-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { IonPage } from "@ionic/vue";
 import IntroSliderContainer from "@/components/IntroSliderContainer.vue";
 
 import { Virtual, EffectFade } from "swiper";
@@ -41,6 +44,7 @@ export default defineComponent({
     Swiper,
     SwiperSlide,
     IntroSliderContainer,
+    IonPage,
   },
 
   setup() {

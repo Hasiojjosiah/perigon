@@ -43,12 +43,16 @@
 
             <!-- Wizard Line -->
             <div
-              class="
-                border-t-2 border-gray-400 border-dashed
+              :class="`
+                border-t-2  border-dashed
                 w-full
                 grow-0
                 my-auto
-              "
+                ${
+                  wizardIndicator[1].active
+                    ? 'transition border-black'
+                    : 'transition border-gray-400'
+                }`"
             ></div>
             <!-- End Wizard Line -->
 
@@ -78,12 +82,16 @@
 
             <!-- Wizard Line -->
             <div
-              class="
-                border-t-2 border-gray-400 border-dashed
+              :class="`
+                border-t-2  border-dashed
                 w-full
                 grow-0
                 my-auto
-              "
+                ${
+                  wizardIndicator[2].active
+                    ? 'transition border-black'
+                    : 'transition border-gray-400'
+                }`"
             ></div>
             <!-- End Wizard Line -->
 
@@ -145,8 +153,9 @@
         <swiper
           ref="slideSwiper"
           class="bg-white h-screen"
-          :options="swiperOptions"
-          :slides-per-view="1"
+          :centeredSlides="true"
+          :slidesPerView="1"
+          :autoHeight="true"
           :auto-destroy="true"
           :delete-instance-on-destroy="true"
           :cleanup-styles-on-destroy="true"
@@ -158,7 +167,9 @@
           <swiper-slide class="bg-[#f2f2f2]">
             <AccountDetails></AccountDetails>
           </swiper-slide>
-          <swiper-slide class="bg-[#f2f2f2]">3</swiper-slide>
+          <swiper-slide class="bg-[#f2f2f2]">
+            <TermsAndConditions></TermsAndConditions>
+          </swiper-slide>
         </swiper>
       </div>
     </ion-content>
@@ -176,12 +187,18 @@ import {
   IonButton,
   IonBackButton,
   IonIcon,
+  alertController,
 } from "@ionic/vue";
+
 import { arrowBackOutline, person, shield, checkmark } from "ionicons/icons";
+
 import { defineComponent } from "vue";
 
 import PersonalInformation from "@/components/CreateAccountComponents/PersonalInformation.vue";
+
 import AccountDetails from "@/components/CreateAccountComponents/AccountDetails.vue";
+
+import TermsAndConditions from "@/components/CreateAccountComponents/TermsAndConditions.vue";
 
 import { Swiper, SwiperSlide } from "swiper/vue";
 
@@ -199,11 +216,11 @@ export default defineComponent({
     IonButton,
     IonBackButton,
     IonIcon,
-
     Swiper,
     SwiperSlide,
     PersonalInformation,
     AccountDetails,
+    TermsAndConditions,
   },
   data() {
     return {
@@ -227,23 +244,9 @@ export default defineComponent({
       person,
       shield,
       checkmark,
-      swiperOptions: {
-        //loop: true,
-        //loopedSlides: 5, // looped slides should be the same
-        spaceBetween: 30,
-        centeredSlides: true,
-        slidesOffsetBefore: "100px",
-        slidesOffsetAfter: "100px",
-        slidesPerView: "auto",
-        touchRatio: 0.2,
-        slideToClickedSlide: true,
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-      },
     };
   },
+
   methods: {
     onSlideChange(swiper: any) {
       const activeIndex = swiper.activeIndex;
@@ -251,10 +254,28 @@ export default defineComponent({
 
       if (previousIndex < activeIndex) {
         this.wizardIndicator[activeIndex].active = true;
+        swiper.updateAutoHeight(500);
+
+        if (activeIndex === 2) {
+          this.presentAlertConfirm();
+        }
       } else {
         this.wizardIndicator[previousIndex].active = false;
       }
-      // this.wizardIndicator[activeIndex].active = true;
+    },
+
+    async presentAlertConfirm() {
+      const alert = await alertController.create({
+        header: "SCROLL DOWN",
+        message:
+          "Before you can proceed you must scroll to accept the latest Terms  & Privacy Policy",
+        buttons: [
+          {
+            text: "OKAY, GOT IT",
+          },
+        ],
+      });
+      return alert.present();
     },
   },
   computed: {},
@@ -263,11 +284,24 @@ export default defineComponent({
 </script>
 
 
-<style scoped>
-ion-toolbar {
-  --background: black;
-  --color: white;
-  --padding-top: 20px;
-  --padding-bottom: 10px;
+<style >
+
+
+/* Alert */
+
+.alert-head {
+  padding-top: 28px !important;
+}
+
+.alert-title {
+  font-weight: 700 !important;
+  letter-spacing: 0.05em;
+}
+
+.alert-button {
+  background: black !important;
+  color: white !important;
+  margin: 31px !important;
+  border-radius: 4px !important;
 }
 </style>

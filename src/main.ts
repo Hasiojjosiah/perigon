@@ -20,6 +20,7 @@ import { IonicVue } from '@ionic/vue';
 import { createApp } from 'vue'
 import router from './router';
 
+
 const app = createApp(App)
   .use(IonicVue, {
     mode: 'ios',
@@ -27,6 +28,7 @@ const app = createApp(App)
     swipeBackEnabled: false
   })
   .use(router);
+
 
 router.isReady().then(() => {
   app.mount('#app');

@@ -20,7 +20,11 @@
     "core-js": "^3.6.5",
     "swiper": "^8.0.7",
     "vue": "^3.2.21",
-    "vue-router": "^4.0.12"
+    "vue-page-guide": "^0.2.0",
+    "vue-router": "^4.0.12",
+    "vue-sweetalert2": "^5.0.2",
+    "vue-tour": "^2.0.0",
+    "vue3-tour": "^0.2.0"
   },
   "devDependencies": {
     "@capacitor/cli": "3.4.3",

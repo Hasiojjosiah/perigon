@@ -1,94 +1,142 @@
 <template>
-  <swiper
-    ref="slideSwiper"
-    class="bg-white h-screen"
-    :options="swiperOptions"
-    :slides-per-view="1"
-    :modules="modules"
-    effect="fade"
-    :auto-destroy="true"
-    :delete-instance-on-destroy="true"
-    :cleanup-styles-on-destroy="true"
-  >
-    <swiper-slide
-      v-for="(intro, index) in introContent"
-      :key="index"
-      :virtualIndex="index"
-      class="bg-white"
-    >
-      <IntroSliderContainer
-        :position="index"
-        :icon="intro.icon"
-        :title="intro.title"
-        :descriptions="intro.description"
-      ></IntroSliderContainer>
-    </swiper-slide>
-  </swiper>
+  <ion-page>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button
+            class="text-white"
+            :icon="arrowBackOutline"
+            default-href="/"
+            v-if="false"
+          ></ion-back-button>
+          <ion-button v-if="true">
+            <ion-icon
+              color="light"
+              slot="icon-only"
+              :icon="arrowBackOutline"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>Purchase Passes</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content :fullscreen="true">
+      <swiper
+        :effect="'coverflow'"
+        :grabCursor="true"
+        :centeredSlides="true"
+        slidesPerView="2"
+        :coverflowEffect="{
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: false,
+        }"
+        :pagination="true"
+        :modules="[EffectCoverflow]"
+        class="mySwiper h-screen"
+      >
+        <swiper-slide
+          class="bg-[#f2f2f2] py-4"
+          style=" -webkit-mask-image: radial-gradient(circle 10px at 0 10px, transparent 0, transparent 20px, black 20px);"
+          v-for="(item, index) in [0, 1, 2, 3, 4]"
+          :key="index"
+        >
+        
+
+          <div class="bg-white shadow-md h-60 rounded-b-md"></div>
+        </swiper-slide>
+      </swiper>
+    </ion-content>
+  </ion-page>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import IntroSliderContainer from "@/components/IntroSliderContainer.vue";
+import {
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonContent,
+  IonPage,
+  IonButtons,
+  IonButton,
+  IonBackButton,
+  IonIcon,
+  alertController,
+} from "@ionic/vue";
 
-import { Virtual, EffectFade } from "swiper";
+import { arrowBackOutline, person, shield, checkmark } from "ionicons/icons";
+
+import { defineComponent } from "vue";
+
 import { Swiper, SwiperSlide } from "swiper/vue";
+
+// import required modules
+import { EffectCoverflow } from "swiper";
 
 import "swiper/css";
 
 export default defineComponent({
   name: "PassesPage",
   components: {
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonContent,
+    IonPage,
+    IonButtons,
+    IonButton,
+    IonBackButton,
+    IonIcon,
     Swiper,
     SwiperSlide,
-    IntroSliderContainer,
+  },
+  data() {
+    return {};
   },
 
   setup() {
     return {
-      introContent: [
-        {
-          icon: "icons8-ticket-100.png",
-          title: "BUY PASSES",
-          description:
-            "Lorem ipsum dolor sit amet, <br/> consectetur adipiscing elit. Pulvinar<br/> ac neque, enim cursus est fascilisis.",
-        },
-        {
-          icon: "icons8-stationary-bike-100.png",
-          title: "BOOK A RIDE",
-          description:
-            "Lorem ipsum dolor sit amet, <br/> consectetur adipiscing elit. Pulvinar<br/> ac neque, enim cursus est fascilisis.",
-        },
-        {
-          icon: "icons8-mobile-banking-100.png",
-          title: "PAY AT YOUR CONVINENCE",
-          description:
-            "Lorem ipsum dolor sit amet, <br/> consectetur adipiscing elit. Pulvinar<br/> ac neque, enim cursus est fascilisis.",
-        },
-      ],
-      modules: [EffectFade, Virtual],
-
-      swiperOptions: {
-        //loop: true,
-        //loopedSlides: 5, // looped slides should be the same
-        spaceBetween: 30,
-        centeredSlides: true,
-        slidesOffsetBefore: "100px",
-        slidesOffsetAfter: "100px",
-        slidesPerView: "auto",
-        touchRatio: 0.2,
-        slideToClickedSlide: true,
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-      },
+      arrowBackOutline,
+      person,
+      shield,
+      checkmark,
+      EffectCoverflow,
     };
   },
 
   methods: {
-    nextSlides() {
-      console.log("Test");
+    onSlideChange(swiper: any) {
+      // const activeIndex = swiper.activeIndex;
+      // const previousIndex = swiper.previousIndex;
+      // if (previousIndex < activeIndex) {
+      //   this.wizardIndicator[activeIndex].active = true;
+      //   swiper.updateAutoHeight(500);
+      //   if (activeIndex === 2) {
+      //     this.presentAlertConfirm();
+      //   }
+      // } else {
+      //   this.wizardIndicator[previousIndex].active = false;
+      // }
+    },
+
+    async presentAlertConfirm() {
+      const alert = await alertController.create({
+        header: "SCROLL DOWN",
+        message:
+          "Before you can proceed you must scroll to accept the latest Terms  & Privacy Policy",
+        buttons: [
+          {
+            text: "OKAY, GOT IT",
+          },
+        ],
+      });
+      return alert.present();
     },
   },
+  computed: {},
+  // mounted: {},
 });
 </script>
